@@ -1,0 +1,80 @@
+{
+  "name": "@chore-dev/xlsx2json",
+  "version": "1.0.0",
+  "description": "Convert .xlsx to .json",
+  "keywords": [
+    "Convert",
+    "Converter",
+    "JSON",
+    "Tool",
+    "Tools"
+  ],
+  "type": "module",
+  "bin": "./bin/xlsx2json.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "build:watch": "nodemon --watch ./src --ext ts --exec yarn build",
+    "prepare": "husky",
+    "release": "release-it --config .release-it.json",
+    "// ESLint": "---------- ---------- ---------- ---------- ----------",
+    "eslint": "yarn prettier:fix; yarn eslint:no-glob .",
+    "eslint:no-glob": "eslint --cache --color --config eslint.config.js",
+    "eslint:fix": "yarn eslint --fix --quiet",
+    "eslint:fix:no-glob": "yarn eslint:no-glob --fix --quiet",
+    "// Prettier": "---------- ---------- ---------- ---------- ----------",
+    "prettier": "yarn prettier:base -c",
+    "prettier:base": "yarn prettier:base:no-glob './**/*.{js?(x),ts?(x),json}'",
+    "prettier:base:no-glob": "prettier --cache --config .prettier.config.js --ignore-path .prettierignore --ignore-unknown",
+    "prettier:fix": "yarn prettier:base -w",
+    "prettier:fix:no-glob": "yarn prettier:base:no-glob -w"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "change-case": "^5.4.4",
+    "command-line-args": "^5.2.1"
+  },
+  "devDependencies": {
+    "@chore-dev/composer": "^1.0.12",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@eslint/js": "8",
+    "@release-it/conventional-changelog": "^8.0.1",
+    "@types/eslint__js": "8",
+    "@types/lint-staged": "^13.3.0",
+    "eslint": "8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "globals": "^15.6.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "nodemon": "^3.1.3",
+    "prettier": "^3.3.2",
+    "release-it": "^17.3.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.1"
+  },
+  "author": "Chore Team",
+  "contributors": [
+    {
+      "name": "Issac Li",
+      "email": "issac.li.523@gmail.com"
+    }
+  ],
+  "homepage": "https://github.com/chore-dev/xlsx2json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chore-dev/xlsx2json"
+  },
+  "bugs": {
+    "url": "https://github.com/chore-dev/xlsx2json/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "Apache-2.0"
+}
