@@ -14,5 +14,5 @@ export default {
     sourcemap: false
   },
   plugins: [json(), typescript(), uglify()],
-  external: ['chalk', 'change-case', 'command-line-args']
+  external: ['chalk', 'change-case', 'command-line-args', 'fs', 'path', 'zod']
 };
