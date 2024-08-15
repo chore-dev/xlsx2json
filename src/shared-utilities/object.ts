@@ -1,6 +1,6 @@
 export const isKeyOf = <Object extends Record<string | number | symbol, unknown>>(
-  input: string | number | symbol,
-  object: Object
+  object: Object,
+  input: string | number | symbol
 ): input is keyof Object => {
   return input in object;
 };

@@ -51,7 +51,7 @@ export const getZodIssueMessage = (issue: ZodIssue) => {
   const message = ISSUE_CODES[code] || SOMETHING_WENT_WRONG;
 
   let pathString = createPath(path);
-  pathString = pathString ? ` at position \`${pathString}\`` : '';
+  pathString = pathString ? ` at \`${pathString}\`` : '';
 
   return `${replaceByPairs(message, { code, ...remaining })}${pathString}`;
 };

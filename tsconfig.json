@@ -1,5 +1,5 @@
 {
-  "exclude": [".composer.bak", "node_modules", "dist"],
+  "exclude": [".composer.bak", ".rollup.cache", "dist", "node_modules"],
   "include": ["**/*.d.ts", "**/*.js", "**/*.ts", "types"],
   "compilerOptions": {
     "skipLibCheck": true,

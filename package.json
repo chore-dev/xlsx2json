@@ -34,9 +34,12 @@
     "prettier:fix:no-glob": "yarn prettier:base:no-glob -w"
   },
   "dependencies": {
+    "@types/lodash-es": "^4.17.12",
     "chalk": "^5.3.0",
     "change-case": "^5.4.4",
     "command-line-args": "^5.2.1",
+    "lodash-es": "^4.17.21",
+    "xlsx": "^0.18.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {

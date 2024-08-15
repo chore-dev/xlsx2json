@@ -1,0 +1,13 @@
+{
+  "userManagement": {
+    "registration": {
+      "success": {
+        "newAccount": {
+          "validCredential": {
+            "message": "Account created successfully."
+          }
+        }
+      }
+    }
+  }
+}

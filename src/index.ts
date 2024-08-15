@@ -1,37 +1,42 @@
 import commandLineArgs from 'command-line-args';
-import { z } from 'zod';
 
-import ConfigSchema from './constants/config.schema';
+import Schema from './config/schema';
 import { CONFIG_FILE_NAME } from './constants/global';
-import { arrayWrap } from './shared-utilities/array';
-import { touchConfigFile } from './shared-utilities/configs';
-import { validateConfig } from './shared-utilities/configs/validate';
+import configFileParser from './shared-utilities/config/parser';
+import { pathsValidator } from './shared-utilities/config/validator';
 import { PWD } from './shared-utilities/fs';
-import progress from './shared-utilities/progress';
-import logger from './utilities/logger';
+import { messagesConverter } from './shared-utilities/logger/messages';
+import { Arguments } from './types/global';
+import application from './utilities/application';
+import xlsx2json from './xlsx2json';
 
-const options = commandLineArgs([
+const commandLineArguments = commandLineArgs([
   { name: 'config', alias: 'C', type: String },
   { name: 'dry-run', alias: 'D', type: Boolean }
-]);
+]) as Arguments;
 
-progress.start(logger);
+application.start();
 
-touchConfigFile(PWD(options.config || `./${CONFIG_FILE_NAME}`)).then(config => {
-  const result = validateConfig(config, {
-    zodSchema: ConfigSchema
+(async () => {
+  const configFileLocation = PWD(commandLineArguments.config || `./${CONFIG_FILE_NAME}`);
+  const configs = await configFileParser(configFileLocation, application, Schema);
+
+  pathsValidator(configs, ['input', 'outputDir'], invalidPaths => {
+    application.exit(
+      messagesConverter(invalidPaths, (paths, index) => {
+        return paths.map(path => {
+          return ['config:error:locationNotFound', { index, path }];
+        });
+      })
+    );
   });
-
-  if (!result.valid) {
-    logger.error(result.messages);
-    logger.error('config:error:fixAndRetry');
-    progress.exit(logger);
-  }
-
-  const configs = arrayWrap(config as z.infer<typeof ConfigSchema>);
 
   configs.forEach((config, index) => {
-    const c = console;
-    c.log(config, index);
+    application.lineBreak();
+    application.log('config:inProgress:atIndex', { index });
+
+    xlsx2json(config, commandLineArguments);
   });
-});
+
+  application.completed();
+})();

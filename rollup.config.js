@@ -14,5 +14,5 @@ export default {
     sourcemap: false
   },
   plugins: [json(), typescript(), uglify()],
-  external: ['chalk', 'change-case', 'command-line-args', 'fs', 'path', 'zod']
+  external: ['chalk', 'change-case', 'command-line-args', 'fs', 'lodash-es', 'path', 'xlsx', 'zod']
 };
