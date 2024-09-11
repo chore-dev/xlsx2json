@@ -1,13 +1,34 @@
 {
-  "userManagement": {
-    "registration": {
-      "success": {
-        "newAccount": {
-          "validCredential": {
-            "message": "Account created successfully."
-          }
-        }
+  "signInForm": {
+    "header": "Sign in CN",
+    "description": "Stay updated on your professional world. CN",
+    "userField": {
+      "label": "Email or phone CN",
+      "errorMandatory": "Please enter an email address or phone number. CN",
+      "errorInvalid": "Please enter a valid username. CN"
+    },
+    "passwordField": {
+      "label": "Password CN",
+      "show": "Show CN",
+      "hide": "Hide CN",
+      "errorLength": "The password you provided must have at least 6 characters. CN",
+      "errorInvalid": {
+        "body": "Wrong email or password. Try again or {0}. CN",
+        "redirectToRegistration": "create an account CN"
       }
+    },
+    "forgotPassword": {
+      "label": "Forgot Password? CN"
+    },
+    "submit": {
+      "label": "Sign in CN"
+    },
+    "or": "Or CN",
+    "tnc": {
+      "body": "By clicking Continue, you agree to LinkedIn’s {0}, {1}, and {2}. CN",
+      "userAgreement": "User Agreement CN",
+      "privacyPolicy": "Privacy Policy CN",
+      "cookiePolicy": "Cookie Policy CN"
     }
   }
 }
