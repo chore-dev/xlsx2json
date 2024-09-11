@@ -4,6 +4,11 @@ import { ConfigOptions, Row } from '../types/global';
 
 import application from './application';
 import { getStringifiedKey, KeyBuilderOutput } from './key';
+import {
+  promptDuplicateKeyMessage,
+  promptIncompleteKeyMessage,
+  promptMissingValueMessage
+} from './messages';
 
 const outputBuilderCreator = (config: ConfigOptions) => {
   const { options = {}, values: columns } = config;
@@ -22,14 +27,7 @@ const outputBuilderCreator = (config: ConfigOptions) => {
 
         if (!key) {
           if (!logged) {
-            application.lineBreak();
-            application.error(
-              `[SKIPPED] [ERROR_INCOMPLETE_KEY] ${segments.map(s => (!s ? 'undefined' : s)).join(', ')}`
-            );
-            application.indent.increase();
-            application.error('└ Set `allowIncompleteKey` to true to allow this incomplete key');
-            application.indent.decrease();
-            application.lineBreak();
+            promptIncompleteKeyMessage(segments);
             logged = true;
           }
           continue;
@@ -42,14 +40,7 @@ const outputBuilderCreator = (config: ConfigOptions) => {
 
         if (value === null) {
           if (!logged) {
-            application.lineBreak();
-            application.warn(`[SKIPPED] [MISSING_VALUE] ${key}`);
-            application.indent.increase();
-            application.warn(
-              '└ Remove `fallbackValue`: false or set `fallbackValue` to a string to preserve a key with no value'
-            );
-            application.indent.decrease();
-            application.lineBreak();
+            promptMissingValueMessage(key);
             logged = true;
           }
           continue;
@@ -60,19 +51,12 @@ const outputBuilderCreator = (config: ConfigOptions) => {
         if (key in parent || has(parent, key)) {
           if (overwriteDuplicateKey) {
             if (!logged) {
-              application.lineBreak();
-              application.warn(`[OVERWROTE] [DUPLICATE_KEY] ${key}`);
-              application.indent.increase();
-              application.warn('└ Set `overwriteDuplicateKey` to false to disallow duplicate key');
-              application.indent.decrease();
-              application.lineBreak();
+              promptDuplicateKeyMessage(key, true);
               logged = true;
             }
           } else {
             if (!logged) {
-              application.lineBreak();
-              application.error(`[SKIPPED] [DUPLICATE_KEY] ${key}`);
-              application.lineBreak();
+              promptDuplicateKeyMessage(key, false);
               logged = true;
             }
             continue;
