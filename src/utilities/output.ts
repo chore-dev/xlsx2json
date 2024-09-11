@@ -39,6 +39,22 @@ const outputBuilderCreator = (config: ConfigOptions) => {
 
         let value = row[column];
         if (!value && fallbackValue !== false) value = fallbackValue;
+
+        if (value === null) {
+          if (!logged) {
+            application.lineBreak();
+            application.warn(`[SKIPPED] [MISSING_VALUE] ${key}`);
+            application.indent.increase();
+            application.warn(
+              '└ Remove `fallbackValue`: false or set `fallbackValue` to a string to preserve a key with no value'
+            );
+            application.indent.decrease();
+            application.lineBreak();
+            logged = true;
+          }
+          continue;
+        }
+
         value = `${value}`;
 
         if (key in parent || has(parent, key)) {
