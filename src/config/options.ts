@@ -10,7 +10,7 @@ const CASE_CONVERSION = [
   'trainCase'
 ] as const;
 
-const allowIncompleteKey: boolean = false;
+const allowIncompleteKey: boolean = true;
 const caseConversion: (typeof CASE_CONVERSION)[number] | false = 'camelCase';
 const enableSheetGroup: boolean = false;
 const fallbackValue: string | false = 'VALUE_NOT_FOUND';
