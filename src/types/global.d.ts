@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import Schema from '../config/schema';
 
-export type Arguments = { config?: string; 'dry-run'?: boolean };
+export type CliArguments = { config?: string; 'dry-run'?: boolean };
 
 export type Columns = ConfigOptions['keys'] & ConfigOptions['values'];
 
