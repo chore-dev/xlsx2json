@@ -27,7 +27,7 @@ const outputBuilderCreator = (config: ConfigOptions) => {
 
         if (!key) {
           if (!logged) {
-            promptIncompleteKeyMessage(segments);
+            promptIncompleteKeyMessage(segments, row);
             logged = true;
           }
           continue;

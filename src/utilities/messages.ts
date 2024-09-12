@@ -1,6 +1,8 @@
 import { declareAlertMessage } from '../shared-utilities/logger/messages';
+import { Row } from '../types/global';
 
 import application from './application';
+import { KeyBuilderOutput } from './key';
 
 const SKIPPED = 'SKIPPED';
 const OVERWRITE = 'OVERWRITE';
@@ -36,14 +38,18 @@ export const promptDuplicateKeyMessage = (key: string, overwrite?: boolean) => {
   }
 };
 
-export const promptIncompleteKeyMessage = (segments: Array<unknown>) => {
-  messageBuilder(
-    application.error,
-    SKIPPED,
-    'INCOMPLETE_KEY',
-    segments.map(s => (!s ? 'undefined' : s)).join(', '),
-    'Set `allowIncompleteKey` to true to allow this incomplete key'
-  );
+export const promptIncompleteKeyMessage = (segments: KeyBuilderOutput, row: Row) => {
+  if (segments.filter(Boolean).length === 0) {
+    messageBuilder(application.error, SKIPPED, 'MISSING_KEY', `${JSON.stringify(row)}`);
+  } else {
+    messageBuilder(
+      application.error,
+      SKIPPED,
+      'INCOMPLETE_KEY',
+      segments.map(s => (!s ? 'undefined' : s)).join(', '),
+      'Set `allowIncompleteKey` to true to allow this incomplete key'
+    );
+  }
 };
 
 export const promptMissingValueMessage = (key: string) => {
