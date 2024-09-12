@@ -10,42 +10,48 @@ const CASE_CONVERSION = [
   'trainCase'
 ] as const;
 
-const ALLOW_INCOMPLETE_KEY_DEFAULT_VALUE: boolean = true;
-const CASE_CONVERSION_DEFAULT_VALUE: (typeof CASE_CONVERSION)[number] | false = 'camelCase';
-const ENABLE_SHEET_GROUP_DEFAULT_VALUE: boolean = false;
-const FALLBACK_VALUE_DEFAULT_VALUE: string | false = 'VALUE_NOT_FOUND';
-const FLATTEN_OUTPUT_DEFAULT_VALUE: boolean = false;
-const OVERWRITE_DUPLICATE_KEY_DEFAULT_VALUE: boolean = true;
-const PARENT_LOOK_UP_DEFAULT_VALUE: boolean = true;
-const SEPARATOR_DEFAULT_VALUE: string = '.'; // Only effective when flattenOutput is true
+const DEFAULT_VALUES = {
+  ALLOW_INCOMPLETE_KEY: true,
+  CASE_CONVERSION: 'camelCase',
+  ENABLE_SHEET_GROUP: false,
+  FALLBACK_VALUE: 'VALUE_NOT_FOUND',
+  FLATTEN_OUTPUT: false,
+  OVERWRITE_DUPLICATE_KEY: true,
+  PARENT_LOOK_UP: true,
+  SEPARATOR: '.'
+} as const;
 
 const optionalBoolean = (value: boolean) => z.boolean().optional().default(value);
 
 const options = z
   .object({
-    allowIncompleteKey: optionalBoolean(ALLOW_INCOMPLETE_KEY_DEFAULT_VALUE),
+    allowIncompleteKey: optionalBoolean(DEFAULT_VALUES.ALLOW_INCOMPLETE_KEY),
     caseConversion: z
       .enum(CASE_CONVERSION)
       .or(z.literal(false))
       .optional()
-      .default(CASE_CONVERSION_DEFAULT_VALUE),
-    enableSheetGroup: optionalBoolean(ENABLE_SHEET_GROUP_DEFAULT_VALUE),
-    fallbackValue: z.string().or(z.literal(false)).optional().default(FALLBACK_VALUE_DEFAULT_VALUE),
-    flattenOutput: optionalBoolean(FLATTEN_OUTPUT_DEFAULT_VALUE),
-    overwriteDuplicateKey: optionalBoolean(OVERWRITE_DUPLICATE_KEY_DEFAULT_VALUE),
-    parentLookUp: optionalBoolean(PARENT_LOOK_UP_DEFAULT_VALUE),
-    separator: z.string().optional().default(SEPARATOR_DEFAULT_VALUE)
+      .default(DEFAULT_VALUES.CASE_CONVERSION),
+    enableSheetGroup: optionalBoolean(DEFAULT_VALUES.ENABLE_SHEET_GROUP),
+    fallbackValue: z
+      .string()
+      .or(z.literal(false))
+      .optional()
+      .default(DEFAULT_VALUES.FALLBACK_VALUE),
+    flattenOutput: optionalBoolean(DEFAULT_VALUES.FLATTEN_OUTPUT),
+    overwriteDuplicateKey: optionalBoolean(DEFAULT_VALUES.OVERWRITE_DUPLICATE_KEY),
+    parentLookUp: optionalBoolean(DEFAULT_VALUES.PARENT_LOOK_UP),
+    separator: z.string().optional().default(DEFAULT_VALUES.SEPARATOR)
   })
   .optional()
   .default({
-    allowIncompleteKey: ALLOW_INCOMPLETE_KEY_DEFAULT_VALUE,
-    caseConversion: CASE_CONVERSION_DEFAULT_VALUE,
-    enableSheetGroup: ENABLE_SHEET_GROUP_DEFAULT_VALUE,
-    fallbackValue: FALLBACK_VALUE_DEFAULT_VALUE,
-    flattenOutput: FLATTEN_OUTPUT_DEFAULT_VALUE,
-    overwriteDuplicateKey: OVERWRITE_DUPLICATE_KEY_DEFAULT_VALUE,
-    parentLookUp: PARENT_LOOK_UP_DEFAULT_VALUE,
-    separator: SEPARATOR_DEFAULT_VALUE
+    allowIncompleteKey: DEFAULT_VALUES.ALLOW_INCOMPLETE_KEY,
+    caseConversion: DEFAULT_VALUES.CASE_CONVERSION,
+    enableSheetGroup: DEFAULT_VALUES.ENABLE_SHEET_GROUP,
+    fallbackValue: DEFAULT_VALUES.FALLBACK_VALUE,
+    flattenOutput: DEFAULT_VALUES.FLATTEN_OUTPUT,
+    overwriteDuplicateKey: DEFAULT_VALUES.OVERWRITE_DUPLICATE_KEY,
+    parentLookUp: DEFAULT_VALUES.PARENT_LOOK_UP,
+    separator: DEFAULT_VALUES.SEPARATOR
   });
 
 export default options;
