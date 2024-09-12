@@ -2,14 +2,15 @@ import { writeFileSync } from 'fs';
 import XLSX from 'xlsx';
 
 import { isObject } from './shared-utilities/object';
-import { CliArguments, ConfigOptions } from './types/global';
+import commandLineArguments from './stores/cli';
+import { ConfigOptions } from './types/global';
 import application from './utilities/application';
 import { keyBuilderCreator } from './utilities/key';
 import outputBuilderCreator from './utilities/output';
 import getValidRows from './utilities/validator/sheet';
 import getValidSheets from './utilities/validator/workBook';
 
-const xlsx2json = (config: ConfigOptions, commandLineArguments: CliArguments) => {
+const xlsx2json = (config: ConfigOptions) => {
   const { ignores = {}, input, keys, outputDir, values } = config;
 
   application.log('xlsx:inProgress:readingXlsx', { path: input });

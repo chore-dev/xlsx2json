@@ -1,19 +1,12 @@
-import commandLineArgs from 'command-line-args';
-
 import Schema from './config';
 import { CONFIG_FILE_NAME } from './constants/global';
 import configFileParser from './shared-utilities/config/parser';
 import { pathsValidator } from './shared-utilities/config/validator';
 import { PWD } from './shared-utilities/fs';
 import { messagesConverter } from './shared-utilities/logger/messages';
-import { CliArguments } from './types/global';
+import commandLineArguments from './stores/cli';
 import application from './utilities/application';
 import xlsx2json from './xlsx2json';
-
-const commandLineArguments = commandLineArgs([
-  { name: 'config', alias: 'C', type: String },
-  { name: 'dry-run', alias: 'D', type: Boolean }
-]) as CliArguments;
 
 application.start();
 
@@ -35,7 +28,7 @@ application.start();
     application.lineBreak();
     application.log('config:inProgress:atIndex', { index });
 
-    xlsx2json(config, commandLineArguments);
+    xlsx2json(config);
   });
 
   application.completed();
