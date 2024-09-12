@@ -1,6 +1,6 @@
 import commandLineArgs from 'command-line-args';
 
-import Schema from './config/schema';
+import Schema from './config';
 import { CONFIG_FILE_NAME } from './constants/global';
 import configFileParser from './shared-utilities/config/parser';
 import { pathsValidator } from './shared-utilities/config/validator';

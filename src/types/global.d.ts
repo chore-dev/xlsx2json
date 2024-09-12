@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import Schema from '../config/schema';
+import Schema from '../config';
 
 export type CliArguments = { config?: string; 'dry-run'?: boolean };
 

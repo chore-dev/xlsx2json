@@ -1,16 +1,8 @@
 import { z } from 'zod';
 
+import columns from './columns';
+import ignores from './ignores';
 import options from './options';
-
-const columns = z.array(z.string()).min(1);
-
-const ignores = z
-  .object({
-    rows: z.array(z.number()).optional().default([]),
-    sheets: z.array(z.string()).optional().default([])
-  })
-  .optional()
-  .default({ rows: [], sheets: [] });
 
 const Schema = z.object({
   ignores,
