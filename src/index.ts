@@ -7,9 +7,9 @@ import cliStore from './stores/cli';
 import application from './utilities/application';
 import xlsx2json from './xlsx2json';
 
-application.start();
-
 (async () => {
+  application.start();
+
   const configFile = PWD(cliStore.get('config'));
 
   const configs = await configFileParser(configFile, application, Schema);
