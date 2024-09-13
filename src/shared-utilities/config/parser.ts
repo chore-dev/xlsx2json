@@ -4,8 +4,8 @@ import { ZodRawShape } from 'zod/lib/types';
 
 import { Application } from '../application';
 import { arrayWrap } from '../array';
-import { LoggerMessages } from '../logger';
 import { messagesConverter } from '../logger/messages';
+import { Messages } from '../node/logger/shared';
 import { isObject } from '../object';
 import { flattenIssues, getZodIssueMessage } from '../zod';
 
@@ -40,7 +40,7 @@ const configFileParser = async <Schema extends ZodObject<ZodRawShape>>(
     return results;
   }
 
-  let schemaIssues: LoggerMessages = [];
+  let schemaIssues: Messages = [];
 
   for (let i = 0; i < configs.length; i++) {
     const config = configs[i];

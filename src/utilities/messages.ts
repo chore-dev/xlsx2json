@@ -1,4 +1,4 @@
-import { declareAlertMessage } from '../shared-utilities/logger/messages';
+import { formatAlertMessage } from '../shared-utilities/node/logger/format';
 import { Row } from '../types/global';
 
 import application from './application';
@@ -15,7 +15,7 @@ const messageBuilder = (
   additionalInformation?: string
 ) => {
   application.lineBreak();
-  logger(declareAlertMessage(type, issue, message));
+  logger(formatAlertMessage(type, issue, message));
   if (additionalInformation) {
     application.indent.increase();
     logger(`└ ${additionalInformation}`);

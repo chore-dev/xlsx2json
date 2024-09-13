@@ -1,5 +1,6 @@
 import { PWD } from './fs';
-import loggerBuilder, { LoggerMessage, LoggerMessages, MessageVariables } from './logger';
+import loggerBuilder from './node/logger';
+import { Message, Messages, Variables } from './node/logger/shared';
 
 const applicationBuilder = (
   namespace: string,
@@ -14,7 +15,7 @@ const applicationBuilder = (
       logger.lineBreak();
       process.exit(1);
     },
-    exit: (messages: LoggerMessage | LoggerMessages, variables?: MessageVariables) => {
+    exit: (messages: Message | Messages, variables?: Variables) => {
       logger.lineBreak();
       if (messages) {
         if (Array.isArray(messages)) {
