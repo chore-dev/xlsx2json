@@ -15,7 +15,7 @@ const configFileParser = async <Schema extends ZodObject<ZodRawShape>>(
   path: string,
   application: Application,
   zodSchema: Schema,
-  options?: ValidateConfigOptions
+  options?: ReadConfigFileOptions
 ): Promise<Array<z.input<Schema>>> => {
   let configs = await touchConfigFile(path, application);
 
@@ -64,6 +64,6 @@ const configFileParser = async <Schema extends ZodObject<ZodRawShape>>(
 
 export default configFileParser;
 
-interface ValidateConfigOptions {
+interface ReadConfigFileOptions {
   allowMultiple?: boolean;
 }
