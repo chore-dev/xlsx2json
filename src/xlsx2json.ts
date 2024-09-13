@@ -1,4 +1,5 @@
 import { writeFileSync } from 'fs';
+import { pick } from 'lodash-es';
 import XLSX from 'xlsx';
 
 import { isObject } from './shared-utilities/object';
@@ -40,7 +41,9 @@ const xlsx2json = (config: ConfigOptions) => {
     rows.forEach(row => {
       if (!isObject(row)) return;
 
-      output.set(keyBuilder(name, row), row);
+      // NOTE: Remove unnecessary columns from the row
+      const _row = pick(row, [...keys, ...values]);
+      output.set(keyBuilder(name, _row), _row);
     });
 
     application.indent.decrease();
