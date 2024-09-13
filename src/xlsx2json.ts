@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import XLSX from 'xlsx';
 
 import { isObject } from './shared-utilities/object';
-import commandLineArguments from './stores/cli';
+import cliStore from './stores/cli';
 import { ConfigOptions } from './types/global';
 import application from './utilities/application';
 import { keyBuilderCreator } from './utilities/key';
@@ -47,7 +47,7 @@ const xlsx2json = (config: ConfigOptions) => {
 
     const result = output.get();
 
-    if (commandLineArguments['dry-run']) {
+    if (cliStore.get('dry-run')) {
       // Ignore the console linting for dry-run
       // eslint-disable-next-line no-console
       console.log(JSON.stringify(result, null, 2));

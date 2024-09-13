@@ -1,11 +1,14 @@
-import commandLineArgs from 'command-line-args';
+import { CONFIG_FILE_NAME } from '../constants/global';
+import createCliStore from '../shared-utilities/node/stores/cli';
 
-import { CliArguments } from '../types/global';
+const cliStore = createCliStore<{
+  config: string;
+  'dry-run': boolean;
+}>([
+  { name: 'config', alias: 'C', type: String, defaultValue: `./${CONFIG_FILE_NAME}` },
+  { name: 'dry-run', alias: 'D', type: Boolean, defaultValue: false }
+]);
 
-const commandLineArguments = commandLineArgs([
-  { name: 'config', alias: 'C', type: String },
-  { name: 'dry-run', alias: 'D', type: Boolean },
-  { name: 'quiet', alias: 'Q', type: Boolean }
-]) as CliArguments;
+export default cliStore;
 
-export default commandLineArguments;
+export type CliArguments = ReturnType<typeof cliStore.getAll>;

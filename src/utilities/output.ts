@@ -1,5 +1,6 @@
 import { has, set } from 'lodash-es';
 
+import cliStore from '../stores/cli';
 import { ConfigOptions, Row } from '../types/global';
 
 import application from './application';
@@ -61,7 +62,7 @@ const outputBuilderCreator = (config: ConfigOptions) => {
             }
             continue;
           }
-        } else if (!logged) {
+        } else if (!cliStore.get('quiet') && !logged) {
           application.log(`[ADDED] ${key}`);
           logged = true;
         }
