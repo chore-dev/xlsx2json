@@ -1,11 +1,11 @@
 import XLSX from 'xlsx';
 
-import { ConfigOptions } from '../../types/global';
+import { Config } from '../../configs';
 import application from '../application';
 
 const getValidSheets = (
   workBook: ReturnType<typeof XLSX.readFile>,
-  blackList: NonNullable<ConfigOptions['ignores']>['sheets'] = []
+  blackList: NonNullable<Config['ignores']>['sheets'] = []
 ) => {
   const sheetNames = workBook.SheetNames;
 

@@ -1,9 +1,5 @@
-import { z } from 'zod';
+import { Config } from '../configs';
 
-import Schema from '../configs';
-
-export type Columns = ConfigOptions['keys'] & ConfigOptions['values'];
-
-export type ConfigOptions = z.input<typeof Schema>;
+export type Columns = Config['keys'] & Config['values'];
 
 export type Row = Record<string, unknown>;

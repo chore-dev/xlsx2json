@@ -1,11 +1,9 @@
 import * as changeCase from 'change-case';
 
-import { ConfigOptions, Row } from '../types/global';
+import { Config } from '../configs';
+import { Row } from '../types/global';
 
-export const getStringifiedKey = (
-  segments: KeyBuilderOutput,
-  options: ConfigOptions['options'] = {}
-) => {
+export const getStringifiedKey = (segments: KeyBuilderOutput, options: Config['options'] = {}) => {
   const { allowIncompleteKey, caseConversion, flattenOutput, separator } = options;
 
   if (!allowIncompleteKey && (segments.includes(undefined) || segments.includes(null))) {
@@ -28,7 +26,7 @@ export const getValidSegments = (segments: KeyBuilderOutput) => {
   return segments.filter(Boolean);
 };
 
-export const keyBuilderCreator = (config: ConfigOptions) => {
+export const keyBuilderCreator = (config: Config) => {
   const { keys, options = {} } = config;
   const { enableSheetGroup, parentLookUp } = options;
 

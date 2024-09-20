@@ -1,4 +1,4 @@
-/** @type {import("./src/types/global").ConfigOptions[]} */
+/** @type {import("./dist/configs").Configs} */
 export default [
   {
     input: './demo/example.xlsx',

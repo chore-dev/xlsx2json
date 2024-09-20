@@ -1,7 +1,8 @@
 import { has, set } from 'lodash-es';
 
+import { Config } from '../configs';
 import cliStore from '../stores/cli';
-import { ConfigOptions, Row } from '../types/global';
+import { Row } from '../types/global';
 
 import application from './application';
 import { getStringifiedKey, KeyBuilderOutput } from './key';
@@ -11,7 +12,7 @@ import {
   promptMissingValueMessage
 } from './messages';
 
-const outputBuilderCreator = (config: ConfigOptions) => {
+const outputBuilderCreator = (config: Config) => {
   const { options = {}, values: columns } = config;
   const { fallbackValue, flattenOutput, overwriteDuplicateKey } = options;
 

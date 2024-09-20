@@ -2,16 +2,16 @@ import { writeFileSync } from 'fs';
 import { pick } from 'lodash-es';
 import XLSX from 'xlsx';
 
+import { Config } from './configs';
 import { isObject } from './shared-utilities/object';
 import cliStore from './stores/cli';
-import { ConfigOptions } from './types/global';
 import application from './utilities/application';
 import { keyBuilderCreator } from './utilities/key';
 import outputBuilderCreator from './utilities/output';
 import getValidRows from './utilities/validator/sheet';
 import getValidSheets from './utilities/validator/workBook';
 
-const xlsx2json = (config: ConfigOptions) => {
+const xlsx2json = (config: Config) => {
   const { ignores = {}, input, keys, outputDir, values } = config;
 
   application.log('xlsx:inProgress:readingXlsx', { path: input });

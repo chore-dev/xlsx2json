@@ -14,3 +14,7 @@ const Schema = z.object({
 });
 
 export default Schema;
+
+export type Config = z.input<typeof Schema>;
+
+export type Configs = Array<Config>;
