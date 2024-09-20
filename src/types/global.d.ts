@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import Schema from '../config';
+import Schema from '../configs';
 
 export type Columns = ConfigOptions['keys'] & ConfigOptions['values'];
 

@@ -1,4 +1,4 @@
-import Schema from './config';
+import Schema from './configs';
 import configFileParser from './shared-utilities/config/parser';
 import { pathsValidator } from './shared-utilities/config/validator';
 import { PWD } from './shared-utilities/fs';
