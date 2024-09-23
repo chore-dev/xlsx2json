@@ -1,8 +1,8 @@
 import chalk, { ChalkInstance } from 'chalk';
-import { arrayWrap } from '../../array';
 import { PWD } from '../../fs';
-import { isKeyOf } from '../../object';
-import { replaceByPairs } from '../../string';
+import { arrayWrap } from '../../common/array';
+import { isKeyOf } from '../../common/object';
+import { replacePlaceholders } from '../../common/string';
 import PRESET_MESSAGES from './presets';
 import { Message, MessageCollection, Messages, Variables } from './shared';
 
@@ -56,7 +56,7 @@ const logger = <CustomMessages extends MessageCollection = Record<never, never>>
           isKeyOf(collections, message) ? collections[message] : message
         ).filter(Boolean) as Array<string>;
         const replaced = contents.map(content =>
-          replaceByPairs(content, {
+          replacePlaceholders(content, {
             namespace,
             pwd: PWD(),
             now: new Date().toISOString(),

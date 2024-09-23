@@ -1,7 +1,7 @@
 import { z, ZodIssue } from 'zod';
 import { ZodIssueBase } from 'zod/lib/ZodError';
 
-import { replaceByPairs } from './string';
+import { replacePlaceholders } from './common/string';
 
 const SOMETHING_WENT_WRONG = 'Something went wrong(code: {{code}})!';
 
@@ -53,7 +53,7 @@ export const getZodIssueMessage = (issue: ZodIssue) => {
   let pathString = createPath(path);
   pathString = pathString ? ` at \`${pathString}\`` : '';
 
-  return `${replaceByPairs(message, { code, ...remaining })}${pathString}`;
+  return `${replacePlaceholders(message, { code, ...remaining })}${pathString}`;
 };
 
 type ZodIssueCode = (typeof z.ZodIssueCode)[keyof typeof z.ZodIssueCode];
