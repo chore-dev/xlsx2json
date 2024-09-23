@@ -14,7 +14,7 @@ const PRESET_MESSAGES = {
    * Application messages, order by flow
    */
   'application:start': ['Initializing {{namespace}}...', 'Application initialized!'],
-  'application:pwd': 'Working directory: `{{path}}`',
+  'application:pwd': 'Working directory: `{{pwd}}`',
   'application:exit': 'Exit with error(s)...',
   'application:completed': 'All Task(s) Completed!',
   /**
