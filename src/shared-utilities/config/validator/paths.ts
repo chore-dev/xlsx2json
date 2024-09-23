@@ -1,6 +1,6 @@
-import { pathExists } from '../../fs';
 import { arrayWrap } from '../../common/array';
 import { isFunction } from '../../function';
+import { pathExists } from '../../node/fs';
 
 export const pathsValidator = <
   Config extends Record<string | number | symbol, unknown>,

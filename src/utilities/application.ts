@@ -1,5 +1,5 @@
 import { NAMESPACE } from '../constants/global';
-import applicationBuilder from '../shared-utilities/application';
+import applicationBuilder from '../shared-utilities/node/application';
 
 const CUSTOM_MESSAGES = {
   // In Progress

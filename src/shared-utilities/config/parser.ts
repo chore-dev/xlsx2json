@@ -2,10 +2,10 @@ import { defaults } from 'lodash-es';
 import { z, ZodObject } from 'zod';
 import { ZodRawShape } from 'zod/lib/types';
 
-import { Application } from '../application';
 import { arrayWrap } from '../common/array';
 import { isObject } from '../common/object';
 import { messagesConverter } from '../logger/messages';
+import { Application } from '../node/application';
 import { Messages } from '../node/logger/shared';
 import { flattenIssues, getZodIssueMessage } from '../zod';
 

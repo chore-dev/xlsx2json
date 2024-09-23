@@ -1,8 +1,8 @@
 import Schema from './configs';
 import configFileParser from './shared-utilities/config/parser';
 import { pathsValidator } from './shared-utilities/config/validator';
-import { PWD } from './shared-utilities/fs';
 import { messagesConverter } from './shared-utilities/logger/messages';
+import { PWD } from './shared-utilities/node/fs';
 import cliStore from './stores/cli';
 import application from './utilities/application';
 import xlsx2json from './xlsx2json';

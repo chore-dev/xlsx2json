@@ -1,8 +1,10 @@
 import chalk, { ChalkInstance } from 'chalk';
-import { PWD } from '../../fs';
+
 import { arrayWrap } from '../../common/array';
 import { isKeyOf } from '../../common/object';
 import { replacePlaceholders } from '../../common/string';
+import { PWD } from '../fs';
+
 import PRESET_MESSAGES from './presets';
 import { Message, MessageCollection, Messages, Variables } from './shared';
 
