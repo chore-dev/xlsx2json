@@ -32,6 +32,13 @@ const logger = <CustomMessages extends MessageCollection = Record<never, never>>
   let lineBroken = false;
   let wrapping = false;
 
+  const lineBreak = () => {
+    if (lineBroken) return;
+
+    lineBroken = true;
+    CONSOLE.log('');
+  };
+
   const builder = (level: Level, chalk?: ChalkInstance) => {
     type Presets = keyof typeof collections;
 
@@ -39,8 +46,6 @@ const logger = <CustomMessages extends MessageCollection = Record<never, never>>
     function fn(messages: Messages<Presets>): Array<Array<string>>;
     function fn(messages: unknown, variables?: unknown): Array<Array<string>> {
       if (!messages || (Array.isArray(messages) && messages.length === 0)) return [];
-
-      lineBroken = false;
 
       const results: Messages<Presets> = [];
 
@@ -68,12 +73,18 @@ const logger = <CustomMessages extends MessageCollection = Record<never, never>>
 
         if (level !== 'get') {
           replaced.forEach(line => {
-            const formattedLine = `[${namespace}] ${wrapping ? `${options.verticalLine} ` : ''}${prefix}${' '.repeat(indentation * INDENTATION_DEPTH)}${line}${suffix}`;
-
-            if (chalk) {
-              CONSOLE[level](chalk(formattedLine));
+            if (line === '\n') {
+              lineBreak();
             } else {
-              CONSOLE[level](formattedLine);
+              lineBroken = false;
+
+              const formattedLine = `[${namespace}] ${wrapping ? `${options.verticalLine} ` : ''}${prefix}${' '.repeat(indentation * INDENTATION_DEPTH)}${line}${suffix}`;
+
+              if (chalk) {
+                CONSOLE[level](chalk(formattedLine));
+              } else {
+                CONSOLE[level](formattedLine);
+              }
             }
           });
         }
@@ -100,12 +111,7 @@ const logger = <CustomMessages extends MessageCollection = Record<never, never>>
       decrease: () => (indentation -= 1),
       increase: () => (indentation += 1)
     },
-    lineBreak: () => {
-      if (lineBroken) return;
-
-      lineBroken = true;
-      CONSOLE.log('');
-    },
+    lineBreak,
     wrapper: {
       end: () => {
         logs.log('');
