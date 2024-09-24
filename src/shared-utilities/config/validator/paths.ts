@@ -1,5 +1,5 @@
 import { arrayWrap } from '../../common/array';
-import { isFunction } from '../../function';
+import { isFunction } from '../../common/function';
 import { pathExists } from '../../node/fs';
 
 export const pathsValidator = <
