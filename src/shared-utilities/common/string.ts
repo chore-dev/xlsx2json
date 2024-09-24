@@ -11,8 +11,7 @@ export const replacePlaceholders = (
 
   return Object.entries(values).reduce((replacedInput, [key, _value]) => {
     let value = _value;
-    if (Array.isArray(_value)) value = _value.join(', ');
-    if (!isString(_value)) value = JSON.stringify(_value);
+    if (Array.isArray(value)) value = value.join(', ');
 
     return replacedInput.replace(
       new RegExp(`${delimiter.prefix}${key}${delimiter.suffix}`, 'g'),
