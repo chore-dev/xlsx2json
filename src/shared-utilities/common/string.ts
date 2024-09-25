@@ -1,7 +1,3 @@
-export const isString = (input: unknown): input is string => {
-  return typeof input === 'string';
-};
-
 export const replacePlaceholders = (
   input: string,
   values: Record<string, unknown> = {},

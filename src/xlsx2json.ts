@@ -3,7 +3,7 @@ import { pick } from 'lodash-es';
 import XLSX from 'xlsx';
 
 import { Config } from './configs';
-import { isObject } from './shared-utilities/common/object';
+import { isObject } from './shared-utilities/common/is';
 import cliStore from './stores/cli';
 import application from './utilities/application';
 import { keyBuilderCreator } from './utilities/key';

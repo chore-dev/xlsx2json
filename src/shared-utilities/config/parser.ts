@@ -3,8 +3,8 @@ import { z, ZodObject } from 'zod';
 import { ZodRawShape } from 'zod/lib/types';
 
 import { arrayWrap } from '../common/array';
-import { isObject } from '../common/object';
 import { messagesConverter } from '../logger/messages';
+import { isObject } from '../common/is';
 import { Application } from '../node/application';
 import { Messages } from '../node/logger/shared';
 import { flattenIssues, getZodIssueMessage } from '../zod';

@@ -1,7 +1,7 @@
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 
-import { isString } from '../common/string';
+import { isString } from '../common/is';
 
 export const PWD = (path: string = '') => resolve(process.cwd(), path);
 
