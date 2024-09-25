@@ -3,11 +3,10 @@ import { z, ZodObject } from 'zod';
 import { ZodRawShape } from 'zod/lib/types';
 
 import { arrayWrap } from '../common/array';
-import { messagesConverter } from '../logger/messages';
 import { isObject } from '../common/is';
+import { translateZodIssues } from '../common/zod/issue';
 import { Application } from '../node/application';
 import { Messages } from '../node/logger/shared';
-import { flattenIssues, getZodIssueMessage } from '../zod';
 
 import { touchConfigFile } from './';
 
@@ -50,11 +49,22 @@ const configFileParser = async <Schema extends ZodObject<ZodRawShape>>(
     if (success && remaining.data) {
       results.push(remaining.data as z.input<Schema>);
     } else {
+      const zodMessages = translateZodIssues(remaining.error?.issues, {
+        details: true,
+        flatten: true
+      });
+
       schemaIssues = schemaIssues.concat(
-        messagesConverter(flattenIssues(remaining.error?.issues || []), issue => {
-          return [['config:error:invalidSchema', { index: i, issue: getZodIssueMessage(issue) }]];
+        zodMessages.map(({ message }) => {
+          return ['config:error:schema', { index: i, issue: message }];
         })
       );
+      // schemaIssues = schemaIssues
+      //   .concat
+      //   // messagesConverter(flattenIssues(remaining.error?.issues || []), issue => {
+      //   //   return [['config:error:invalidSchema', { index: i, issue: getZodIssueMessage(issue) }]];
+      //   // })
+      //   ();
     }
   }
 
