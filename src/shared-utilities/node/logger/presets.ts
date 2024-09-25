@@ -30,7 +30,7 @@ const PRESET_MESSAGES = {
   ),
   'config:error:notFound': configError('CONFIG_NOT_FOUND', 'At `{{path}}`'),
   'config:error:pathNotFound': configError('PATH_NOT_FOUND', `At \`{{path}}\` ${COMMON.AT_INDEX}`),
-  'config:error:schema': configError('INVALID_SCHEMA', `\`{{issue}}\` ${COMMON.AT_INDEX}`),
+  'config:error:schema': configError('INVALID_SCHEMA', `{{issue}} ${COMMON.AT_INDEX}`),
   'config:error:type': configError('INVALID_TYPE', 'Expect config to be an array or an object')
 } as const satisfies MessageCollection;
 
