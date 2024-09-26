@@ -1,6 +1,5 @@
 import { defaults } from 'lodash-es';
-import { z, ZodObject } from 'zod';
-import { ZodRawShape } from 'zod/lib/types';
+import { z, ZodObject, ZodRawShape } from 'zod';
 
 import { arrayWrap } from '../common/array';
 import { isObject } from '../common/is';
