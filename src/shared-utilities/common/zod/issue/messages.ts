@@ -4,7 +4,6 @@
 //   - ZodIssueCode.invalid_return_type (Related to ZodFunction.implement())
 // + Unable to locate in doc
 //   - ZodIssueCode.invalid_intersection_types
-//   - ZodIssueCode.invalid_literal
 //   - ZodIssueCode.invalid_union_discriminator
 // + Won't customize
 //   - ZodIssueCode.custom
@@ -23,6 +22,7 @@ const GENERAL_MESSAGE = '[{{code}}] Something went wrong!';
 const CUSTOMIZED_MESSAGES = {
   [ZodIssueCode.invalid_date]: 'Expected a valid date',
   [ZodIssueCode.invalid_enum_value]: 'Expected `{{options}}` but got `{{received}}` instead',
+  [ZodIssueCode.invalid_literal]: 'Expected `{{expected}}` but got `{{received}}` instead',
   [ZodIssueCode.invalid_type]: 'Expected `{{expected}}` but got `{{received}}` instead',
   [ZodIssueCode.invalid_union]: 'Error(s) detected. See `unionErrors` for specifics',
   [ZodIssueCode.not_finite]: 'Expected a finite number',
