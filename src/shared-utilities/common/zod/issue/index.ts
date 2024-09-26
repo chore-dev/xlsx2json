@@ -1,25 +1,24 @@
 import { ZodIssue, ZodIssueCode } from 'zod';
 
 import { arrayWrap, stringifyBracketDotNotation } from '../../array';
-import { isKeyOf } from '../../object';
 import { replacePlaceholders } from '../../string';
 
-import { CUSTOMIZED_MESSAGES, GENERAL_MESSAGE, getMessage } from './messages';
+import { getCustomizedMessage } from './messages';
 
 const translator = (issue: ZodIssue, options: Options) => {
-  const { message: _message, path: _path, ...remaining } = issue;
+  const { path: _path, ...remaining } = issue;
   const { details, flatten } = options;
 
   const code = issue.code;
+
+  const message = replacePlaceholders(getCustomizedMessage(code, issue), remaining, {
+    array: ' | '
+  });
   const path = stringifyBracketDotNotation(_path);
 
-  let message = _message;
-  if (isKeyOf(CUSTOMIZED_MESSAGES, code)) {
-    message = replacePlaceholders(getMessage(code, issue), remaining, { array: ' | ' });
-  }
-
+  // Start constructing the return object
   const base = {
-    message: `${message || GENERAL_MESSAGE}${details ? ` at \`${path}\`` : ''}`,
+    message: `${message}${details ? ` at \`${path}\`` : ''}`,
     path
   };
   if (code === ZodIssueCode.invalid_union) {

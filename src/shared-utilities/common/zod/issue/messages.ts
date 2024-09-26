@@ -18,9 +18,9 @@ import { isKeyOf } from '../../object';
 
 import get2BigOr2SmallIssueMessage from './types/tooBigOrTooSmall';
 
-export const GENERAL_MESSAGE = '[{{code}}] Something went wrong!';
+const GENERAL_MESSAGE = '[{{code}}] Something went wrong!';
 
-export const CUSTOMIZED_MESSAGES = {
+const CUSTOMIZED_MESSAGES = {
   [ZodIssueCode.invalid_date]: 'Expected a valid date',
   [ZodIssueCode.invalid_enum_value]: 'Expected `{{options}}` but got `{{received}}`',
   [ZodIssueCode.invalid_type]: 'Expected `{{expected}}` but got `{{received}}`',
@@ -28,24 +28,25 @@ export const CUSTOMIZED_MESSAGES = {
   [ZodIssueCode.not_finite]: 'Expected a finite number',
   [ZodIssueCode.not_multiple_of]: 'Expected the number to be a multiple of `{{multipleOf}}`',
   [ZodIssueCode.too_big]: issue => {
-    if (issue.code !== ZodIssueCode.too_big) return GENERAL_MESSAGE;
+    if (issue.code !== ZodIssueCode.too_big) return;
     return get2BigOr2SmallIssueMessage(issue);
   },
   [ZodIssueCode.too_small]: issue => {
-    if (issue.code !== ZodIssueCode.too_small) return GENERAL_MESSAGE;
+    if (issue.code !== ZodIssueCode.too_small) return;
     return get2BigOr2SmallIssueMessage(issue);
   },
   [ZodIssueCode.unrecognized_keys]: issue => {
-    if (issue.code !== ZodIssueCode.unrecognized_keys) return GENERAL_MESSAGE;
+    if (issue.code !== ZodIssueCode.unrecognized_keys) return;
     return `Unrecognized key(s) detected: ${issue.keys.map(k => `"${k}"`).join(', ')}`;
   }
 } as const satisfies Partial<Record<ZodIssueCode, string | Composer>>;
 
-export const getMessage = (code: ZodIssueCode, issue: ZodIssue) => {
-  if (!isKeyOf(CUSTOMIZED_MESSAGES, code)) return GENERAL_MESSAGE;
+export const getCustomizedMessage = (code: ZodIssueCode, issue: ZodIssue) => {
+  if (!isKeyOf(CUSTOMIZED_MESSAGES, code)) return issue.message || GENERAL_MESSAGE;
 
   const message = CUSTOMIZED_MESSAGES[code];
-  return isFunction<Composer>(message) ? message(issue) : message;
+  const result = isFunction<Composer>(message) ? message(issue) : message;
+  return result || issue.message || GENERAL_MESSAGE;
 };
 
-type Composer = (issue: ZodIssue) => string;
+type Composer = (issue: ZodIssue) => string | undefined;
