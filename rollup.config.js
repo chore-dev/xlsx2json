@@ -13,6 +13,12 @@ export default {
     format: 'esm',
     sourcemap: false
   },
-  plugins: [json(), typescript(), uglify()],
+  plugins: [
+    // @ts-expect-error, not sure why TS2349 is thrown
+    json(),
+    // @ts-expect-error, not sure why TS2349 is thrown
+    typescript(),
+    uglify()
+  ],
   external: ['chalk', 'change-case', 'command-line-args', 'fs', 'lodash-es', 'path', 'xlsx', 'zod']
 };
