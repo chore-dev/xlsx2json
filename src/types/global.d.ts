@@ -1,4 +1,4 @@
-import { Config } from '../configs';
+import type { Config } from '../configs/index.js';
 
 export type Columns = Config['keys'] & Config['values'];
 

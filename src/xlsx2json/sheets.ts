@@ -1,7 +1,7 @@
 import XLSX from 'xlsx';
 
-import application from '../application';
-import { Config } from '../configs';
+import application from '../application.js';
+import type { Config } from '../configs/index.js';
 
 const getPendingSheets = (
   workBook: ReturnType<typeof XLSX.readFile>,
@@ -10,7 +10,7 @@ const getPendingSheets = (
   const sheetNames = workBook.SheetNames;
 
   const ignoredSheets: typeof sheetNames = [];
-  const sheets = workBook.SheetNames.filter(name => {
+  const sheets = sheetNames.filter(name => {
     const blacklisted = blackList.includes(name);
 
     if (blacklisted) ignoredSheets.push(name);

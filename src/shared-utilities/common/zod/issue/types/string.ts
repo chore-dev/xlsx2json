@@ -1,8 +1,8 @@
-import { StringValidation, ZodInvalidStringIssue } from 'zod';
+import type { StringValidation, ZodInvalidStringIssue } from 'zod';
 
-import { isObject } from '../../../is';
-import { isKeyOf } from '../../../object';
-import { replacePlaceholders } from '../../../string';
+import { isObject } from '../../../is.js';
+import { isKeyOf } from '../../../object.js';
+import { replacePlaceholders } from '../../../string.js';
 
 const VALIDATION_MESSAGES = {
   endsWith: 'to end with `{{endsWith}}`',

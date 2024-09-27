@@ -2,6 +2,8 @@ import esLint from '@eslint/js';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tsESLint from 'typescript-eslint';
+
+// @ts-ignore - NOTE: Expecting this error because rootDir is set in tsconfig.json and the file is not in the /src directory
 import prettierConfig from './.prettier.config.js';
 
 const config = tsESLint.config(

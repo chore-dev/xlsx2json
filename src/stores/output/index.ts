@@ -1,12 +1,13 @@
 import { has, set } from 'lodash-es';
 
-import application from '../../application';
-import { Config } from '../../configs';
-import { Row } from '../../types/global';
-import { KeySegments, stringifyKey } from '../../xlsx2json/key';
-import cliStore from '../cli';
+import application from '../../application.js';
+import type { Config } from '../../configs/index.js';
+import type { Row } from '../../types/global.js';
+import type { KeySegments } from '../../xlsx2json/key.js';
+import { stringifyKey } from '../../xlsx2json/key.js';
+import cliStore from '../cli.js';
 
-import { duplicateKeyMessage, incompleteKeyMessage, missingValueMessage } from './messages';
+import { duplicateKeyMessage, incompleteKeyMessage, missingValueMessage } from './messages.js';
 
 let prompted = false;
 

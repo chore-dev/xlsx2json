@@ -1,7 +1,7 @@
 import XLSX from 'xlsx';
 
-import application from '../application';
-import { Columns, Row } from '../types/global';
+import application from '../application.js';
+import type { Columns, Row } from '../types/global.js';
 
 const getPendingRows = (sheet: XLSX.WorkSheet, targets: Columns) => {
   const rows = XLSX.utils.sheet_to_json<Row>(sheet, {

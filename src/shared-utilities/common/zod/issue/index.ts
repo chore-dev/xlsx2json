@@ -1,9 +1,10 @@
-import { ZodIssue, ZodIssueCode } from 'zod';
+import type { ZodIssue } from 'zod';
+import { ZodIssueCode } from 'zod';
 
-import { arrayWrap, stringifyBracketDotNotation } from '../../array';
-import { replacePlaceholders } from '../../string';
+import { arrayWrap, stringifyBracketDotNotation } from '../../array.js';
+import { replacePlaceholders } from '../../string.js';
 
-import { getCustomizedMessage } from './messages';
+import { getCustomizedMessage } from './messages.js';
 
 const translator = (issue: ZodIssue, options: Options) => {
   const { path: _path, ...remaining } = issue;

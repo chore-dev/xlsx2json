@@ -1,7 +1,7 @@
 import * as changeCase from 'change-case';
 
-import { Config } from '../configs';
-import { Row } from '../types/global';
+import type { Config } from '../configs/index.js';
+import type { Row } from '../types/global.js';
 
 export const keyComposer = (config: Config) => {
   const { keys, options = {} } = config;

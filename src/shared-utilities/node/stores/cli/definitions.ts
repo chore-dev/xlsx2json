@@ -1,4 +1,4 @@
-import { OptionDefinitions } from './shared';
+import type { OptionDefinitions } from './shared.js';
 
 // NOTE: Remember to update `DefaultDefinitions` type when adding new definitions
 export const DEFAULT_DEFINITIONS = [

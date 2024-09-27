@@ -1,5 +1,5 @@
-import { formatAlertMessage } from './format';
-import { MessageCollection } from './shared';
+import { formatAlertMessage } from './format.js';
+import type { MessageCollection } from './shared.js';
 
 export const COMMON = {
   AT_INDEX: 'at `config[{{index}}]`'

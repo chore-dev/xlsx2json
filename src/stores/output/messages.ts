@@ -1,7 +1,7 @@
-import application from '../../application';
-import { formatAlertMessage } from '../../shared-utilities/node/logger/format';
-import { Row } from '../../types/global';
-import { KeySegments } from '../../xlsx2json/key';
+import application from '../../application.js';
+import { formatAlertMessage } from '../../shared-utilities/node/logger/format.js';
+import type { Row } from '../../types/global.js';
+import type { KeySegments } from '../../xlsx2json/key.js';
 
 const SKIPPED = 'SKIPPED';
 const OVERWRITE = 'OVERWRITE';

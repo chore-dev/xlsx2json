@@ -1,9 +1,9 @@
-import application from './application';
-import Schema from './configs';
-import readConfigFile from './shared-utilities/node/config';
-import { PWD } from './shared-utilities/node/fs';
-import cliStore from './stores/cli';
-import xlsx2json from './xlsx2json';
+import application from './application.js';
+import Schema from './configs/index.js';
+import readConfigFile from './shared-utilities/node/config/index.js';
+import { PWD } from './shared-utilities/node/fs.js';
+import cliStore from './stores/cli.js';
+import xlsx2json from './xlsx2json/index.js';
 
 (async () => {
   application.start();
