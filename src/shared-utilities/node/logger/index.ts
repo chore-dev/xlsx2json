@@ -45,7 +45,9 @@ const logger = <CustomMessages extends MessageCollection = Record<never, never>>
     function fn(message: Message<Presets>, variables?: Variables): Array<Array<string>>;
     function fn(messages: Messages<Presets>): Array<Array<string>>;
     function fn(messages: unknown, variables?: unknown): Array<Array<string>> {
-      if (!messages || (Array.isArray(messages) && messages.length === 0)) return [];
+      if ((!messages && messages !== '') || (Array.isArray(messages) && messages.length === 0)) {
+        return [];
+      }
 
       const results: Messages<Presets> = [];
 

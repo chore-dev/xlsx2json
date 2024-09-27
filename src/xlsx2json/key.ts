@@ -3,30 +3,7 @@ import * as changeCase from 'change-case';
 import { Config } from '../configs';
 import { Row } from '../types/global';
 
-export const getStringifiedKey = (segments: KeyBuilderOutput, options: Config['options'] = {}) => {
-  const { allowIncompleteKey, caseConversion, flattenOutput, separator } = options;
-
-  if (!allowIncompleteKey && (segments.includes(undefined) || segments.includes(null))) {
-    return undefined;
-  }
-
-  const validSegments = getValidSegments(segments);
-
-  const finalize = (result: string) => {
-    if (!caseConversion) return result;
-    return changeCase[caseConversion](result) as typeof result;
-  };
-
-  if (flattenOutput && separator === '') return finalize(validSegments.join('.'));
-
-  return validSegments.map(finalize).join(flattenOutput ? separator : '.');
-};
-
-export const getValidSegments = (segments: KeyBuilderOutput) => {
-  return segments.filter(Boolean);
-};
-
-export const keyBuilderCreator = (config: Config) => {
+export const keyComposer = (config: Config) => {
   const { keys, options = {} } = config;
   const { enableSheetGroup, parentLookUp } = options;
 
@@ -52,8 +29,28 @@ export const keyBuilderCreator = (config: Config) => {
     // NOTE: Debug suggestion, using console.table is better than console.log
     //       e.g. console.table({ previous, current, merged });
     previous = merged;
+    // NOTE: This function returns an array because outputStore take the array for further processing
     return [...(enableSheetGroup ? [sheetName] : []), ...merged];
   };
 };
 
-export type KeyBuilderOutput = ReturnType<ReturnType<typeof keyBuilderCreator>>;
+export const stringifyKey = (_segments: KeySegments, options: Config['options'] = {}) => {
+  const { allowIncompleteKey, caseConversion, flattenOutput, separator } = options;
+
+  if (!allowIncompleteKey && (_segments.includes(undefined) || _segments.includes(null))) {
+    return undefined;
+  }
+
+  const segments = _segments.filter(Boolean);
+
+  const finalize = (result: string) => {
+    if (!caseConversion) return result;
+    return changeCase[caseConversion](result) as typeof result;
+  };
+
+  if (flattenOutput && separator === '') return finalize(segments.join('.'));
+
+  return segments.map(finalize).join(flattenOutput ? separator : '.');
+};
+
+export type KeySegments = ReturnType<ReturnType<typeof keyComposer>>;

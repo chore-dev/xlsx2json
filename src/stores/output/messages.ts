@@ -1,8 +1,7 @@
-import { formatAlertMessage } from '../shared-utilities/node/logger/format';
-import { Row } from '../types/global';
-
-import application from './application';
-import { KeyBuilderOutput } from './key';
+import application from '../../application';
+import { formatAlertMessage } from '../../shared-utilities/node/logger/format';
+import { Row } from '../../types/global';
+import { KeySegments } from '../../xlsx2json/key';
 
 const SKIPPED = 'SKIPPED';
 const OVERWRITE = 'OVERWRITE';
@@ -14,8 +13,7 @@ const messageBuilder = (
   message: string,
   additionalInformation?: string
 ) => {
-  application.lineBreak();
-  logger(formatAlertMessage(type, issue, message));
+  logger([['\n'], [formatAlertMessage(type, issue, message)]]);
   if (additionalInformation) {
     application.indent.increase();
     logger(`└ ${additionalInformation}`);
@@ -24,7 +22,7 @@ const messageBuilder = (
   application.lineBreak();
 };
 
-export const promptDuplicateKeyMessage = (key: string, overwrite?: boolean) => {
+export const duplicateKeyMessage = (key: string, overwrite?: boolean) => {
   if (overwrite) {
     messageBuilder(
       application.warn,
@@ -38,7 +36,7 @@ export const promptDuplicateKeyMessage = (key: string, overwrite?: boolean) => {
   }
 };
 
-export const promptIncompleteKeyMessage = (segments: KeyBuilderOutput, row: Row) => {
+export const incompleteKeyMessage = (segments: KeySegments, row: Row) => {
   if (segments.filter(Boolean).length === 0) {
     messageBuilder(application.error, SKIPPED, 'MISSING_KEY', `${JSON.stringify(row)}`);
   } else {
@@ -52,7 +50,7 @@ export const promptIncompleteKeyMessage = (segments: KeyBuilderOutput, row: Row)
   }
 };
 
-export const promptMissingValueMessage = (key: string) => {
+export const missingValueMessage = (key: string) => {
   messageBuilder(
     application.error,
     SKIPPED,

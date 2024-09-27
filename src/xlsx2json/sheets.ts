@@ -1,9 +1,9 @@
 import XLSX from 'xlsx';
 
-import { Config } from '../../configs';
 import application from '../application';
+import { Config } from '../configs';
 
-const getValidSheets = (
+const getPendingSheets = (
   workBook: ReturnType<typeof XLSX.readFile>,
   blackList: NonNullable<Config['ignores']>['sheets'] = []
 ) => {
@@ -19,14 +19,14 @@ const getValidSheets = (
 
   if (sheets.length) {
     application.log('xlsx:inProgress:process', {
-      items: sheets.join(', '),
+      items: sheets,
       name: 'Sheet(s)',
       noOfItems: sheets.length
     });
   }
   if (ignoredSheets.length) {
     application.log('xlsx:inProgress:ignore', {
-      items: ignoredSheets.join(', '),
+      items: ignoredSheets,
       name: 'Sheet(s)',
       noOfItems: ignoredSheets.length
     });
@@ -41,4 +41,4 @@ const getValidSheets = (
   return sheets;
 };
 
-export default getValidSheets;
+export default getPendingSheets;

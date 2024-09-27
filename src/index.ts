@@ -1,8 +1,8 @@
+import application from './application';
 import Schema from './configs';
 import readConfigFile from './shared-utilities/node/config';
 import { PWD } from './shared-utilities/node/fs';
 import cliStore from './stores/cli';
-import application from './utilities/application';
 import xlsx2json from './xlsx2json';
 
 (async () => {

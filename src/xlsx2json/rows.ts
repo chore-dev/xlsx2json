@@ -1,9 +1,9 @@
 import XLSX from 'xlsx';
 
-import { Columns, Row } from '../../types/global';
 import application from '../application';
+import { Columns, Row } from '../types/global';
 
-const getValidRows = (sheet: XLSX.WorkSheet, targets: Columns) => {
+const getPendingRows = (sheet: XLSX.WorkSheet, targets: Columns) => {
   const rows = XLSX.utils.sheet_to_json<Row>(sheet, {
     defval: null
   });
@@ -26,14 +26,14 @@ const getValidRows = (sheet: XLSX.WorkSheet, targets: Columns) => {
 
   if (columns.length) {
     application.log('xlsx:inProgress:process', {
-      items: columns.join(', '),
+      items: columns,
       name: 'Column(s)',
       noOfItems: columns.length
     });
   }
   if (missingColumns.length) {
     application.warn('xlsx:inProgress:missing', {
-      items: missingColumns.join(', '),
+      items: missingColumns,
       name: 'Column(s)',
       noOfItems: missingColumns.length
     });
@@ -43,10 +43,10 @@ const getValidRows = (sheet: XLSX.WorkSheet, targets: Columns) => {
       name: 'Column(s)',
       parent: 'Sheet'
     });
-    return [] as typeof rows;
+    return [];
   }
 
   return rows;
 };
 
-export default getValidRows;
+export default getPendingRows;
