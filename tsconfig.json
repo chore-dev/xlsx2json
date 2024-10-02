@@ -21,7 +21,7 @@
     "declaration": true,
     "declarationMap": false,
     "importHelpers": true,
-    "noEmit": false,
+    "noEmit": true,
     "outDir": "dist",
     "removeComments": true,
     "sourceMap": false,
