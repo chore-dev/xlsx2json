@@ -1,5 +1,5 @@
-import { CONFIG_FILE_NAME } from '../constants/global.js';
-import createCliStore from '../shared-utilities/node/stores/cli/index.js';
+import { CONFIG_FILE_NAME } from '../constants/global';
+import createCliStore from '../shared-utilities/node/stores/cli';
 
 const cliStore = createCliStore<{
   config: string;

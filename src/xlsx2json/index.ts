@@ -2,15 +2,15 @@ import { writeFileSync } from 'fs';
 import { pick } from 'lodash-es';
 import XLSX from 'xlsx';
 
-import application from '../application.js';
-import type { Config } from '../configs/index.js';
-import { isObject } from '../shared-utilities/common/is.js';
-import cliStore from '../stores/cli.js';
-import createOutputStore from '../stores/output/index.js';
+import application from '../application';
+import type { Config } from '../configs';
+import { isObject } from '../shared-utilities/common/is';
+import cliStore from '../stores/cli';
+import createOutputStore from '../stores/output';
 
-import { keyComposer } from './key.js';
-import getPendingRows from './rows.js';
-import getPendingSheets from './sheets.js';
+import { keyComposer } from './key';
+import getPendingRows from './rows';
+import getPendingSheets from './sheets';
 
 const xlsx2json = (config: Config) => {
   const { ignores = {}, input, keys, outputDir, values } = config;

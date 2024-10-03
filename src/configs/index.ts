@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import columns from './columns.js';
-import ignores from './ignores.js';
-import options from './options.js';
+import columns from './columns';
+import ignores from './ignores';
+import options from './options';
 
 const Schema = z.object({
   ignores,

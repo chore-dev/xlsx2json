@@ -15,7 +15,6 @@ const config = tsESLint.config(
       'dist/',
       // Cache files
       '.eslintcache',
-      '.rollup.cache',
       // Config files
       '.prettier.config.js',
       'commitlint.config.js',

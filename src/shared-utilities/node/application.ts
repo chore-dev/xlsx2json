@@ -1,5 +1,5 @@
-import loggerBuilder from './logger/index.js';
-import type { Message, Messages, Variables } from './logger/shared.js';
+import loggerBuilder from './logger';
+import type { Message, Messages, Variables } from './logger/shared';
 
 const applicationBuilder = (
   namespace: string,

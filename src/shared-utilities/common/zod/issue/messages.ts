@@ -8,14 +8,13 @@
 // + Won't customize
 //   - ZodIssueCode.custom
 
-import type { ZodIssue } from 'zod';
-import { ZodIssueCode } from 'zod';
+import { type ZodIssue, ZodIssueCode } from 'zod';
 
-import { isFunction } from '../../is.js';
-import { isKeyOf } from '../../object.js';
+import { isFunction } from '../../is';
+import { isKeyOf } from '../../object';
 
-import getInvalidStringIssueMessage from './types/string.js';
-import get2BigOr2SmallIssueMessage from './types/tooBigOrTooSmall.js';
+import getInvalidStringIssueMessage from './types/string';
+import get2BigOr2SmallIssueMessage from './types/tooBigOrTooSmall';
 
 const GENERAL_MESSAGE = '[{{code}}] Something went wrong!';
 

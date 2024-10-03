@@ -1,4 +1,4 @@
-import { isNumber } from './is.js';
+import { isNumber } from './is';
 
 export const arrayWrap = <Input>(input: Input | Array<Input>): Array<Input> => {
   return Array.isArray(input) ? input : [input];

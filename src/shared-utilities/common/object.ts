@@ -1,4 +1,4 @@
-import type { ObjectKey, ObjectLike } from '../types/common.js';
+import type { ObjectKey, ObjectLike } from '../types/common';
 
 export const isKeyOf = <Target extends ObjectLike>(
   object: Target,

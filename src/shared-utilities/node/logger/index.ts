@@ -1,13 +1,12 @@
-import type { ChalkInstance } from 'chalk';
-import chalk from 'chalk';
+import chalk, { type ChalkInstance } from 'chalk';
 
-import { arrayWrap } from '../../common/array.js';
-import { isKeyOf } from '../../common/object.js';
-import { replacePlaceholders } from '../../common/string.js';
-import { PWD } from '../fs.js';
+import { arrayWrap } from '../../common/array';
+import { isKeyOf } from '../../common/object';
+import { replacePlaceholders } from '../../common/string';
+import { PWD } from '../fs';
 
-import PRESET_MESSAGES from './presets.js';
-import type { Message, MessageCollection, Messages, Variables } from './shared.js';
+import PRESET_MESSAGES from './presets';
+import type { Message, MessageCollection, Messages, Variables } from './shared';
 
 const CONSOLE = console;
 const DEFAULT_OPTIONS: Options = {

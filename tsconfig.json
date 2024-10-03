@@ -1,5 +1,5 @@
 {
-  "exclude": [".composer.bak", ".rollup.cache", "dist", "node_modules"],
+  "exclude": [".composer.bak", "dist", "node_modules"],
   "include": ["**/*.d.ts", "**/*.js", "**/*.ts", "types"],
   "compilerOptions": {
     "allowUnusedLabels": false,
@@ -11,20 +11,12 @@
     "noUnusedParameters": true,
     "strict": true,
     "allowArbitraryExtensions": true,
-    // TODO: Decide "esnext" or "NodeNext"(Suggested)
-    "module": "NodeNext",
-    // TODO: Decide "node" or "NodeNext"(Suggested) or "Bundler"(No .js extension)
-    "moduleResolution": "NodeNext",
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
-    // TODO: Decide if "rootDir" is needed
-    "rootDir": "src",
-    "declaration": true,
-    "declarationMap": false,
     "importHelpers": true,
     "noEmit": true,
-    "outDir": "dist",
     "removeComments": true,
-    "sourceMap": false,
     "allowJs": true,
     "checkJs": true,
     "allowSyntheticDefaultImports": true,
@@ -37,6 +29,7 @@
     "moduleDetection": "force",
     "target": "ESNext",
     "incremental": true,
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
     "skipLibCheck": true
   },
   "watchOptions": {},

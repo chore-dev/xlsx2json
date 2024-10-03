@@ -1,7 +1,7 @@
 import XLSX from 'xlsx';
 
-import application from '../application.js';
-import type { Config } from '../configs/index.js';
+import application from '../application';
+import type { Config } from '../configs';
 
 const getPendingSheets = (
   workBook: ReturnType<typeof XLSX.readFile>,
