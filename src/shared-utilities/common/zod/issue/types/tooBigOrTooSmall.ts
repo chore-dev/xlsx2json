@@ -1,7 +1,6 @@
-import type { ZodTooBigIssue, ZodTooSmallIssue } from 'zod';
-import { ZodIssueCode } from 'zod';
+import { ZodIssueCode, type ZodTooBigIssue, type ZodTooSmallIssue } from 'zod';
 
-import { isKeyOf } from '../../../object.js';
+import { isKeyOf } from '../../../object';
 
 const UNIT = {
   array: 'length',

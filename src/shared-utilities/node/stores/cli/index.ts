@@ -1,8 +1,7 @@
 import commandLineArgs from 'command-line-args';
 
-import type { DefaultDefinitions } from './definitions.js';
-import { DEFAULT_DEFINITIONS } from './definitions.js';
-import type { OptionDefinitions } from './shared.js';
+import { DEFAULT_DEFINITIONS, type DefaultDefinitions } from './definitions';
+import type { OptionDefinitions } from './shared';
 
 const createCliStore = <CustomDefinitions extends Record<string, unknown> = Record<never, never>>(
   customDefinitions: OptionDefinitions,

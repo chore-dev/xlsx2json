@@ -1,12 +1,11 @@
 import { get, has } from 'lodash-es';
-import type { ZodRawShape } from 'zod';
-import { z, ZodObject } from 'zod';
+import { z, type ZodObject, type ZodRawShape } from 'zod';
 
-import { arrayWrap } from '../../common/array.js';
-import { isObject } from '../../common/is.js';
-import { translateZodIssues } from '../../common/zod/issue/index.js';
-import { pathExists } from '../fs.js';
-import type { Messages } from '../logger/shared.js';
+import { arrayWrap } from '../../common/array';
+import { isObject } from '../../common/is';
+import { translateZodIssues } from '../../common/zod/issue';
+import { pathExists } from '../fs';
+import type { Messages } from '../logger/shared';
 
 const readConfigFile = async <Schema extends ZodSchema>(
   path: string,

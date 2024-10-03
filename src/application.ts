@@ -1,6 +1,6 @@
-import { NAMESPACE } from './constants/global.js';
-import applicationBuilder from './shared-utilities/node/application.js';
-import type { MessageCollection } from './shared-utilities/node/logger/shared.js';
+import { NAMESPACE } from './constants/global';
+import applicationBuilder from './shared-utilities/node/application';
+import type { MessageCollection } from './shared-utilities/node/logger/shared';
 
 const CUSTOM_MESSAGES = {
   // In Progress - General

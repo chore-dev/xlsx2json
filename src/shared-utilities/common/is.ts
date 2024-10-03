@@ -1,6 +1,6 @@
 // NOTE: This file SHOULD NOT import ANY external functions, EVER!!!
 
-import type { ObjectLike } from '../types/common.js';
+import type { ObjectLike } from '../types/common';
 
 export const isArray = (input: unknown): input is Array<unknown> => {
   return Array.isArray(input);
