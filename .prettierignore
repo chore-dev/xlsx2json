@@ -9,6 +9,3 @@ node_modules/
 
 # Build output files
 .eslintcache
-
-# Cahce files
-.rollup.cache

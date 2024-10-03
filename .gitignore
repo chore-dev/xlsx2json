@@ -76,9 +76,6 @@ web_modules/
 # TypeScript cache
 *.tsbuildinfo
 
-# Rollup cache
-.rollup.cache
-
 # Optional npm cache directory
 .npm
 
