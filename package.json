@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "build:watch": "nodemon --watch ./src --ext ts --exec yarn build:tsup",
+    "build:watch": "nodemon --watch ./src --ext ts --exec yarn build",
     "prepare": "husky",
     "release": "release-it --config .release-it.json",
     "ci": "yarn eslint",
