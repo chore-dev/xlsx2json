@@ -28,7 +28,6 @@
     "build:watch": "nodemon --watch ./src --ext ts --exec yarn build",
     "prepare": "husky",
     "release": "release-it --config .release-it.json",
-    "ci": "yarn eslint",
     "verify:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
     "// ESLint": "---------- ---------- ---------- ---------- ----------",
     "eslint": "yarn prettier:fix; yarn eslint:no-glob .",

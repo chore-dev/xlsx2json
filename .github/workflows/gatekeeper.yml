@@ -1,10 +1,10 @@
-name: CI
+name: Gatekeeper
 
 on:
   pull_request:
   push:
     branches:
-      - feature/apply-creating-package-best-practice
+      - '*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -25,5 +25,14 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Run CI
-        run: yarn ci
+      - name: Verify coding style
+        run: yarn prettier
+
+      - name: Lint code
+        run: yarn eslint:no-glob . && yarn tslint
+
+      - name: Bundle package
+        run: yarn build
+
+      - name: Verify exports
+        run: yarn verify:exports
