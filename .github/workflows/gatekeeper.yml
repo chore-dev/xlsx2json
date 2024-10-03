@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ci:
+  gatekeeper:
     runs-on: ubuntu-latest
 
     steps:
