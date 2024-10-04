@@ -23,14 +23,18 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Verify coding style
+      # Check if developers forgot to prettify the code
+      - name: Prettier check
         run: yarn prettier
 
-      - name: Lint code
+      # Lint the code with ESLint and TSC for any code issues
+      - name: ESLint & TSC check
         run: yarn eslint:no-glob . && yarn tslint
 
+      # In case everything is fine, build the package
       - name: Bundle package
         run: yarn build
 
+      # Verify if the package exports are correct
       - name: Verify exports
         run: yarn verify:exports
