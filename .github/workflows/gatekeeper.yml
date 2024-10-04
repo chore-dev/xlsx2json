@@ -23,14 +23,5 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Verify coding style
-        run: yarn prettier
-
-      - name: Lint code
-        run: yarn eslint:no-glob . && yarn tslint
-
-      - name: Bundle package
-        run: yarn build
-
-      - name: Verify exports
-        run: yarn verify:exports
+      - name: Prettify code, Lint Code, Bundle, and Verify
+        run: yarn ci
